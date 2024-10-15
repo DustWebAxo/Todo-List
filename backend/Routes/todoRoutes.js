@@ -1,5 +1,5 @@
-const TodoStatus = require('../models/enum/todoStatusEnum');
-const TodoSchemaResponse = require('../models/dto/todoResponse');
+// const TodoStatus = require('../models/enum/todoStatusEnum');
+// const TodoSchemaResponse = require('../models/dto/todoResponse');
 
 const express = require('express');
 const Todo = require('../models/Todo');
@@ -24,13 +24,7 @@ router.post('/todos', async (req, res) => {
       description,
     });
     await newTodo.save();
-    const newTodoResponse = new TodoSchemaResponse(
-        newTodo.title,
-        newTodo.description,
-        TodoStatus.getEnumByString(newTodo.status),
-        newTodo.createdAt
-    );
-    res.status(201).json(newTodoResponse);
+    res.status(201).json(newTodo);
   } catch (error) {
     res.status(500).json({ error: 'Erro ao criar tarefa' });
   }
