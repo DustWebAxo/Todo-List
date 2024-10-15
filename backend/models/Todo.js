@@ -1,23 +1,21 @@
 const mongoose = require('mongoose');
 
 const TodoSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-  },
-  status: {
-    type: String,
-    enum: ['planejado','fazendo','concluído'],
-    default: 'planejado',
-  },
+  title: String,
+  description: String,
+  status: String,
   createdAt: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
+
+// Customizando a saída JSON
+TodoSchema.methods.toJSON = function() {
+  const obj = this.toObject();
+  delete obj.__v;
+  return obj;
+};
 
 
 module.exports = mongoose.model('Todo', TodoSchema);

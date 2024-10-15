@@ -1,6 +1,3 @@
-// const TodoStatus = require('../models/enum/todoStatusEnum');
-// const TodoSchemaResponse = require('../models/dto/todoResponse');
-
 const express = require('express');
 const Todo = require('../models/Todo');
 const router = express.Router();
