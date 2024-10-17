@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h1 class="text-4xl text-center font-bold pt-12 sm:text-5xl lg:text-6xl">TODO-LIST</h1>
+    <Titulo />
     <Formulario/>
   </div>
 </template>
 
 <script setup>
+import  Titulo from './frontend/components/Titulo.vue'
 import Formulario from './frontend/components/Formulario.vue';
 </script>
