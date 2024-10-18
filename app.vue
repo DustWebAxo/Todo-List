@@ -1,5 +1,8 @@
 <template>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  <div>
+    <Lista/>
+  </div>
 </template>
+ <script setup>
+ import Lista from './frontend/components/Lista.vue'
+</script>
