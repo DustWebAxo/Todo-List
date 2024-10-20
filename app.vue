@@ -1,5 +1,11 @@
 <template>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  <div>
+    <Titulo />
+    <Formulario/>
+  </div>
 </template>
+
+<script setup>
+import  Titulo from './frontend/components/Titulo.vue'
+import Formulario from './frontend/components/Formulario.vue';
+</script>
