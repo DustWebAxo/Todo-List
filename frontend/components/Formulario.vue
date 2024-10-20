@@ -22,6 +22,34 @@
                 </div>
             </div>
             <ul class="flex flex-col gap-3 overflow-y-auto h-[600px] custom-scrollbar md:">
+                <li v-for="todo in todos" :key="todo._id" class="bg-gray-200 p-4 rounded-lg border-l-[6px] border-red-500">
+                    <div class="flex justify-between items-center border-b-2 border-gray-400 pb-2">
+                        <h1 class="text-3xl font-bold">{{ todo.title }}</h1>
+                        <span class="text-xl font-bold">data de criação</span>
+                    </div>
+                    <div class="text-2xl pt-4">{{ todo.status }}</div>
+                </li>
+                <!-- <li class="bg-gray-200 p-4 rounded-lg border-l-[6px] border-green-500">
+                    <div class="flex justify-between items-center border-b-2 border-gray-400 pb-2">
+                        <h1 class="text-3xl font-bold">TITULO</h1>
+                        <span class="text-xl font-bold">data de criação</span>
+                    </div>
+                    <div class="text-2xl pt-4">status</div>
+                </li>
+                <li class="bg-gray-200 p-4 rounded-lg border-l-[6px] border-yellow-500">
+                    <div class="flex justify-between items-center border-b-2 border-gray-400 pb-2">
+                        <h1 class="text-3xl font-bold">TITULO</h1>
+                        <span class="text-xl font-bold">data de criação</span>
+                    </div>
+                    <div class="text-2xl pt-4">status</div>
+                </li>
+                <li class="bg-gray-200 p-4 rounded-lg border-l-[6px] border-red-500">
+                    <div class="flex justify-between items-center border-b-2 border-gray-400 pb-2">
+                        <h1 class="text-3xl font-bold">TITULO</h1>
+                        <span class="text-xl font-bold">data de criação</span>
+                    </div>
+                    <div class="text-2xl pt-4">status</div>
+                </li>
                 <li class="bg-gray-200 p-4 rounded-lg border-l-[6px] border-red-500">
                     <div class="flex justify-between items-center border-b-2 border-gray-400 pb-2">
                         <h1 class="text-3xl font-bold">TITULO</h1>
@@ -49,35 +77,7 @@
                         <span class="text-xl font-bold">data de criação</span>
                     </div>
                     <div class="text-2xl pt-4">status</div>
-                </li>
-                <li class="bg-gray-200 p-4 rounded-lg border-l-[6px] border-red-500">
-                    <div class="flex justify-between items-center border-b-2 border-gray-400 pb-2">
-                        <h1 class="text-3xl font-bold">TITULO</h1>
-                        <span class="text-xl font-bold">data de criação</span>
-                    </div>
-                    <div class="text-2xl pt-4">status</div>
-                </li>
-                <li class="bg-gray-200 p-4 rounded-lg border-l-[6px] border-green-500">
-                    <div class="flex justify-between items-center border-b-2 border-gray-400 pb-2">
-                        <h1 class="text-3xl font-bold">TITULO</h1>
-                        <span class="text-xl font-bold">data de criação</span>
-                    </div>
-                    <div class="text-2xl pt-4">status</div>
-                </li>
-                <li class="bg-gray-200 p-4 rounded-lg border-l-[6px] border-yellow-500">
-                    <div class="flex justify-between items-center border-b-2 border-gray-400 pb-2">
-                        <h1 class="text-3xl font-bold">TITULO</h1>
-                        <span class="text-xl font-bold">data de criação</span>
-                    </div>
-                    <div class="text-2xl pt-4">status</div>
-                </li>
-                <li class="bg-gray-200 p-4 rounded-lg border-l-[6px] border-red-500">
-                    <div class="flex justify-between items-center border-b-2 border-gray-400 pb-2">
-                        <h1 class="text-3xl font-bold">TITULO</h1>
-                        <span class="text-xl font-bold">data de criação</span>
-                    </div>
-                    <div class="text-2xl pt-4">status</div>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
@@ -85,6 +85,24 @@
 
 <script setup>
 import { ref } from 'vue'
+const newTodo = ref({ title: '', description: '' });
+const { data: todo, refresh } = useFetch('/api');
+
+const addTodo = async () => {
+  await useFetch('/api', {
+    method: 'POST',
+    body: newTodo.value
+  });
+  newTodo.value = { title: '', description: '' };
+  refresh();
+};
+
+const deleteTodo= async (id) => {
+  await useFetch(`/api${id}`, {
+    method: 'DELETE'
+  });
+  refresh();
+};
 
 const titulo = ref('')
 const conteudo = ref('')
