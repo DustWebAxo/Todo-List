@@ -9,17 +9,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  nitro: {
-    devProxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true
-      }
-    }
-  },
-  runtimeConfig: {
-    public: {
-      apiBaseUrl: 'http://localhost:5000'
-    }
-  }
+  modules: ["@pinia/nuxt"]
 })
