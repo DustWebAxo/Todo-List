@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between max-w-[1800px] ml-auto mr-auto">
+  <div class="flex justify-between max-w-[1800px] mx-auto">
     <div class="flex flex-col items-center pt-8 w-8/12 lg:w-6/12 lg:pt-[8rem]">
       <h2 class="text-2xl font-bold mb-5 sm:text-3xl lg:text-4xl">
         Crie uma Task
@@ -31,8 +31,8 @@
     <div class="h-[39rem] w-[5px] bg-black rounded-lg -translate-x-20 lg:mt-[8rem]"></div>
 
     <div class="flex flex-col pt-8 w-8/12 lg:w-6/12 lg:pt-[6rem]">
-      <div class="flex justify-between items-center">
-        <h2 class="text-2xl font-bold mb-5 sm:text-3xl lg:text-4xl">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold sm:text-3xl lg:text-4xl">
           Minhas tarefas
         </h2>
         <div class="flex gap-2">
@@ -96,7 +96,7 @@
       class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
     >
       <div class="bg-white p-8 rounded-lg max-w-xl w-full">
-        <h2 class="text-2xl font-bold mb-4">Editar Tarefa</h2>
+        <h2 class="text-2xl font-bold mb-4">{{ selectedTask.title }}</h2>
         <input
           v-model="selectedTask.title"
           type="text"
