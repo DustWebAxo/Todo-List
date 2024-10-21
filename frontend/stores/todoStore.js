@@ -1,60 +1,68 @@
-import { defineStore } from 'pinia';
-import { useFetch } from '#app';
+import { defineStore } from "pinia";
+import { useFetch } from "#app";
 
-export const useTodoStore = defineStore('todoStore', {
+export const useTaskStore = defineStore("taskStore", {
   state: () => ({
-    todo: [],
+    tasks: [],
+    loading: false,
     error: null,
   }),
-  
   actions: {
-    async fetchTodo() {
+    async fetchTasks() {
+      this.loading = true;
       try {
-        const { data, error } = await useFetch('http://localhost:3000/api');
-        this.todo = data.value; 
-        this.error = error.value;
-
+        const { data, pending, error } = await useFetch(
+          "http://localhost:5000/api/task"
+        );
+        if (error.value) throw new Error(error.value.message);
+        this.tasks = data.value;
+      } catch (err) {
+        this.error = err.message;
+      } finally {
+        this.loading = false;
+      }
+    },
+    async addTask(task) {
+      try {
+        const { data, error } = await useFetch(
+          "http://localhost:5000/api/task",
+          {
+            method: "POST",
+            body: task,
+          }
+        );
+        if (error.value) throw new Error(error.value.message);
+        this.tasks.push(data.value);
       } catch (err) {
         this.error = err.message;
       }
     },
-
-    async addTodo(todo) {
+    async updateTask(taskId, updatedTask) {
       try {
-        const { data, error } = await useFetch('http://localhost:3000/api', {
-          method: 'POST',
-          body: todo,
-        });
-        this.todo.push(data.value);
-        this.error = error.value;
-        
+        const { data, error } = await useFetch(
+          `http://localhost:5000/api/task/${taskId}`,
+          {
+            method: "PUT",
+            body: updatedTask,
+          }
+        );
+        if (error.value) throw new Error(error.value.message);
+        const index = this.tasks.findIndex((task) => task._id === taskId);
+        this.tasks[index] = data.value;
       } catch (err) {
         this.error = err.message;
       }
     },
-
-    async updateTodo(todoId, updatedTodo) {
+    async deleteTask(taskId) {
       try {
-        const { data, error } = await useFetch(`http://localhost:3000/api/${todoId}`, {
-          method: 'PUT',
-          body: updatedTodo,
-        });
-        const index = this.todo.findIndex(todo => todo._id === todoId);
-        this.todo[index] = data.value;
-        this.error = error.value;
-
-      } catch (err) {
-        this.error = err.message;
-      }
-    },
-
-    async deleteTodo(todoId) {
-      try {
-        await useFetch(`http://localhost:3000/api/${todoId}`, {
-          method: 'DELETE',
-        });
-        this.todo = this.todo.filter(todo => todo._id !== todoId);
-
+        const { error } = await useFetch(
+          `http://localhost:5000/api/task/${taskId}`,
+          {
+            method: "DELETE",
+          }
+        );
+        if (error.value) throw new Error(error.value.message);
+        this.tasks = this.tasks.filter((task) => task._id !== taskId);
       } catch (err) {
         this.error = err.message;
       }
