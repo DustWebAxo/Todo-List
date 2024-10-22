@@ -1,7 +1,5 @@
 # Todo List Application
 
-![Todo List Banner](https://example.com/todo-list-banner.png) <!-- Substitua pelo link da sua imagem de banner -->
-
 Uma aplicação de gerenciamento de tarefas utilizando **Nuxt.js** no frontend e **Node.js** com **MongoDB** no backend, estilizada com **Tailwind CSS**. Este projeto é uma ferramenta simples, mas poderosa, que permite aos usuários gerenciar suas tarefas de forma eficiente.
 
 ## 🌟 Funcionalidades
