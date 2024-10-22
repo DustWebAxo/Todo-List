@@ -1,75 +1,48 @@
-# Nuxt 3 Minimal Starter
+# Todo List Application
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![Todo List Banner](https://example.com/todo-list-banner.png) <!-- Substitua pelo link da sua imagem de banner -->
 
-## Setup
+Uma aplicação de gerenciamento de tarefas utilizando **Nuxt.js** no frontend e **Node.js** com **MongoDB** no backend, estilizada com **Tailwind CSS**. Este projeto é uma ferramenta simples, mas poderosa, que permite aos usuários gerenciar suas tarefas de forma eficiente.
 
-Make sure to install the dependencies:
+## 🌟 Funcionalidades
 
-```bash
-# npm
-npm install
+- **CRUD Completo**: Crie, leia, atualize e exclua suas tarefas facilmente.
+- **Interface Intuitiva**: Design responsivo e moderno com Tailwind CSS.
+- **API Acessível**: Interaja com a API tanto pela interface da plataforma quanto via testes de API.
+- **Modo Escuro**: Mude a aparência da aplicação com um simples clique.
+- **Filtragem de Tarefas**: Visualize suas tarefas com diferentes filtros.
 
-# pnpm
-pnpm install
+## ⚙️ Tecnologias Utilizadas
 
-# yarn
-yarn install
+- **Frontend**: 
+  - [Nuxt.js](https://nuxtjs.org/) - Framework Vue.js para criação de aplicações universais.
+  - [Tailwind CSS](https://tailwindcss.com/) - Framework de CSS para estilos modernos e responsivos.
 
-# bun
-bun install
-```
+- **Backend**: 
+  - [Node.js](https://nodejs.org/) - Ambiente de execução JavaScript no lado do servidor.
+  - [Express.js](https://expressjs.com/) - Framework web minimalista para Node.js.
+  - [MongoDB](https://www.mongodb.com/) - Banco de dados NoSQL para armazenamento de tarefas.
 
-## Development Server
+## 🚀 Começando
 
-Start the development server on `http://localhost:3000`:
+Para iniciar o projeto, siga os passos abaixo:
 
-```bash
-# npm
-npm run dev
+### Pré-requisitos
 
-# pnpm
-pnpm run dev
+- [Node.js](https://nodejs.org/) (v14 ou superior)
+- [MongoDB](https://www.mongodb.com/) (local ou MongoDB Atlas)
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
+### Clonando o Repositório
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+git clone https://github.com/seuusuario/todo-list-app.git
+cd todo-list-app
 ```
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 📄 Documentação da API
+GET /tasks: Obtém todas as tarefas.
+POST /tasks: Cria uma nova tarefa.
+PUT /tasks/
+: Atualiza uma tarefa existente.
+DELETE /tasks/
+: Remove uma tarefa.
