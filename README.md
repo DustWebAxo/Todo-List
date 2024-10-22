@@ -38,9 +38,9 @@ cd todo-list-app
 ```
 
 ## 📄 Documentação da API
-GET /tasks: Obtém todas as tarefas.
-POST /tasks: Cria uma nova tarefa.
-PUT /tasks/
+- GET /tasks: Obtém todas as tarefas.
+- POST /tasks: Cria uma nova tarefa.
+- PUT /tasks/
 : Atualiza uma tarefa existente.
-DELETE /tasks/
+- DELETE /tasks/
 : Remove uma tarefa.
