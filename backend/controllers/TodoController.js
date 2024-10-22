@@ -61,3 +61,4 @@ exports.deleteTasks = async (req, res) => {
     res.status(500).send({ message: "Erro ao deletar cliente", error });
   }
 };
+

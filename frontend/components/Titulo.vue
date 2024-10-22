@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { useThemeStore } from "@/frontend/stores/themeStore";
+import { useThemeStore } from "../stores/themeStore";
 import { storeToRefs } from "pinia";
 import "@fortawesome/fontawesome-free/css/all.css";
 

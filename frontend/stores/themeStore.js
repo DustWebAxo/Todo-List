@@ -10,3 +10,4 @@ export const useThemeStore = defineStore("theme", () => {
 
   return { isDarkMode, toggleDarkMode };
 });
+

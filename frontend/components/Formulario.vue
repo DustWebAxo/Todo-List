@@ -221,10 +221,10 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { useTaskStore } from "@/frontend/stores/todoStore";
+import { useTaskStore } from "../stores/todoStore";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
-import { useThemeStore } from "@/frontend/stores/themeStore";
+import { useThemeStore } from "../stores/themeStore";
 import { storeToRefs } from "pinia";
 
 const taskStore = useTaskStore();
