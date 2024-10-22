@@ -1,7 +1,19 @@
 <template>
-  <div class="flex items-center flex-col xl:flex-row justify-between max-w-[1900px] mx-auto">
-    <div class="flex flex-col items-center pt-8 xl:pt-4 w-9/12 lg:w-6/12 lg:pt-[8rem]">
-      <h2 class="text-[28px] font-bold mb-5 sm:text-3xl lg:text-4xl">
+  <div
+    :class="[
+      'flex items-center flex-col xl:flex-row justify-between max-w-full',
+      isDarkMode ? 'bg-[#313131]' : 'bg-white',
+    ]"
+  >
+    <div
+      class="flex flex-col items-center pt-8 xl:pt-4 w-9/12 lg:w-6/12 lg:pt-[4rem]"
+    >
+      <h2
+        :class="[
+          'text-[28px] font-bold mb-8 sm:text-3xl lg:text-[40px]',
+          isDarkMode ? 'text-white' : 'text-black',
+        ]"
+      >
         Crie uma Task
       </h2>
       <form @submit.prevent="createTask" class="space-y-4">
@@ -9,18 +21,29 @@
           v-model="title"
           type="text"
           placeholder="Título da Task..."
-          class="w-full p-3 bg-gray-200 rounded-md focus:outline-none shadow-sm sm:text-lg lg:text-xl"
+          :class="[
+            'w-full p-3 rounded-md focus:outline-none shadow-sm sm:text-lg lg:text-xl',
+            isDarkMode ? 'bg-[#4b4b4b] text-white' : 'bg-gray-200 text-black',
+          ]"
         />
         <textarea
           v-model="content"
           placeholder="Conteúdo da Task..."
           rows="4"
-          class="w-full min-h-[300px] resize-none overflow-y-auto p-3 bg-gray-200 rounded-md focus:outline-none shadow-sm sm:text-lg lg:text-xl"
+          :class="[
+            'w-full min-h-[300px] resize-none overflow-y-auto p-3 rounded-md focus:outline-none shadow-sm sm:text-lg lg:text-xl',
+            isDarkMode ? 'bg-[#4b4b4b] text-white' : 'bg-gray-200 text-black',
+          ]"
         ></textarea>
         <div class="text-center">
           <button
             type="submit"
-            class="bg-[#2B2B2B] text-white px-6 py-2 mt-2 rounded-md hover:bg-[#595959] transition-all shadow-sm sm:text-lg lg:text-2xl"
+            :class="[
+              'px-6 py-2 mt-2 rounded-md transition-all shadow-sm sm:text-lg lg:text-2xl',
+              isDarkMode
+                ? 'bg-[#4b4b4b] text-white hover:bg-[#777777]'
+                : 'bg-[#2B2B2B] text-white hover:bg-[#595959]',
+            ]"
           >
             Criar
           </button>
@@ -28,44 +51,77 @@
       </form>
     </div>
 
-    <div class="xl:h-[39rem] xl:w-[5px] xl:bg-black xl:rounded-lg xl:-translate-x-20 xl:mt-[8rem]"></div>
+    <div
+      :class="[
+        'xl:h-[39rem] xl:w-[5px] xl:rounded-lg xl:-translate-x-20 xl:mt-[8rem]',
+        isDarkMode ? 'xl:bg-gray-400' : 'xl:bg-black',
+      ]"
+    ></div>
 
-    <div class="flex flex-col items-center pt-8 w-12/12 mb-8 lg:w-6/12 lg:pt-[6rem]">
+    <div
+      class="flex flex-col items-center pt-8 w-12/12 mb-8 lg:w-6/12 lg:pt-[2rem]"
+    >
       <div class="flex flex-col justify-between items-center mb-4">
-        <h2 class="text-[28px] mb-4 font-bold sm:text-3xl lg:text-4xl lg:mb-8">
+        <h2
+          :class="[
+            'text-[28px] mb-8 font-bold sm:text-3xl lg:text-[40px] lg:mb-8',
+            isDarkMode ? 'text-white' : 'text-black',
+          ]"
+        >
           Minhas tarefas
         </h2>
-        <div class="flex justify-evenly gap-3 lg:gap-10 mb-4">
+        <div class="flex justify-evenly gap-3 lg:gap-5 mb-4">
           <button
             @click="setFilter('Todos')"
-            class="text-[15px] sm:text-xl lg:text-2xl xl:text-xl py-1 lg:py-2 px-3 lg:px-4 sm:px-4 bg-[#2B2B2B] rounded-lg text-white border-l-4 border-gray-500 hover:bg-[#595959] transition-all shadow-sm"
+            :class="[
+              'text-[12px] sm:text-xl xl:text-xl py-1 lg:py-2 px-3 lg:px-4 sm:px-4 rounded-lg border-l-4 border-gray-500 transition-all shadow-sm',
+              isDarkMode
+                ? 'bg-[#4b4b4b] text-white hover:bg-[#777777]'
+                : 'bg-[#2B2B2B] text-white hover:bg-[#595959]',
+            ]"
           >
             Todas
           </button>
           <button
             @click="setFilter('A fazer')"
-            class="text-[15px] sm:text-xl lg:text-2xl xl:text-xl py-1 lg:py-2 px-3 lg:px-3 lg:w-[10vw] xl:w-[7vw] sm:px-4 bg-[#2B2B2B] rounded-lg text-white border-l-4 border-red-500 hover:bg-[#595959] transition-all shadow-sm"
+            :class="[
+              'text-[12px] sm:text-xl xl:text-xl py-1 lg:py-2 px-3 lg:px-3 lg:w-[8vw] xl:w-[5vw] sm:px-4 rounded-lg border-l-4 border-red-500 transition-all shadow-sm',
+              isDarkMode
+                ? 'bg-[#4b4b4b] text-white hover:bg-[#777777]'
+                : 'bg-[#2B2B2B] text-white hover:bg-[#595959]',
+            ]"
           >
             A fazer
           </button>
           <button
             @click="setFilter('Fazendo')"
-            class="text-[15px] sm:text-xl lg:text-2xl xl:text-xl py-1 lg:py-2 px-3 lg:px-4 sm:px-4 bg-[#2B2B2B] rounded-lg text-white border-l-4 border-yellow-500 hover:bg-[#595959] transition-all shadow-sm"
+            :class="[
+              'text-[12px] sm:text-xl xl:text-xl py-1 lg:py-2 px-3 lg:px-4 sm:px-4 rounded-lg border-l-4 border-yellow-500 transition-all shadow-sm',
+              isDarkMode
+                ? 'bg-[#4b4b4b] text-white hover:bg-[#777777]'
+                : 'bg-[#2B2B2B] text-white hover:bg-[#595959]',
+            ]"
           >
             Fazendo
           </button>
           <button
             @click="setFilter('Concluído')"
-            class="text-[15px] sm:text-xl lg:text-2xl xl:text-xl py-1 lg:py-2 px-3 lg:px-4 sm:px-4 bg-[#2B2B2B] rounded-lg text-white border-l-4 border-green-500 hover:bg-[#595959] transition-all shadow-sm"
+            :class="[
+              'text-[12px] sm:text-xl xl:text-xl py-1 lg:py-2 px-3 lg:px-4 sm:px-4 rounded-lg border-l-4 border-green-500 transition-all shadow-sm',
+              isDarkMode
+                ? 'bg-[#4b4b4b] text-white hover:bg-[#777777]'
+                : 'bg-[#2B2B2B] text-white hover:bg-[#595959]',
+            ]"
           >
             Concluído
           </button>
-
         </div>
       </div>
 
       <ul
-        class="flex flex-col w-[80vw] xl:w-[40vw] gap-3 overflow-y-auto h-[600px] custom-scrollbar"
+        :class="[
+          'flex flex-col w-[80vw] xl:w-[45vw] gap-3 overflow-y-auto h-[600px] custom-scrollbar',
+        ]"
       >
         <li
           v-for="task in filterTasks"
@@ -75,18 +131,41 @@
             'border-l-red-500': task.status === 'A fazer',
             'border-l-yellow-500': task.status === 'Fazendo',
             'border-l-green-500': task.status === 'Concluído',
+            'bg-[#4b4b4b]': isDarkMode,
+            'bg-gray-200': !isDarkMode,
           }"
-          class="bg-gray-200 p-4 rounded-lg border-l-[6px] cursor-pointer shadow-lg"
+          class="p-4 rounded-lg border-l-[6px] cursor-pointer shadow-lg"
         >
           <div
-            class="flex justify-between border-b-2 border-gray-400 pb-2"
+            :class="[
+              'flex justify-between border-b-2 pb-2',
+              isDarkMode ? 'border-gray-500' : 'border-gray-400',
+            ]"
           >
-            <h1 class="text-lg font-bold xl:text-xl">{{ task.title }}</h1>
-            <span class="text-md xl:text-lg font-bold">{{
-              new Date(task.createdAt).toLocaleDateString()
-            }}</span>
+            <h1
+              :class="[
+                'text-lg font-bold xl:text-xl',
+                isDarkMode ? 'text-white' : 'text-black',
+              ]"
+            >
+              {{ task.title }}
+            </h1>
+            <span
+              :class="[
+                'text-md xl:text-lg font-bold',
+                isDarkMode ? 'text-gray-300' : 'text-black',
+              ]"
+              >{{ new Date(task.createdAt).toLocaleDateString() }}</span
+            >
           </div>
-          <div class="text-lg pt-4 xl:text-xl">{{ task.status }}</div>
+          <div
+            :class="[
+              'text-lg pt-4 xl:text-xl',
+              isDarkMode ? 'text-gray-300' : 'text-black',
+            ]"
+          >
+            {{ task.status }}
+          </div>
         </li>
       </ul>
     </div>
@@ -145,6 +224,8 @@ import { ref, computed, onMounted } from "vue";
 import { useTaskStore } from "@/frontend/stores/todoStore";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import { useThemeStore } from "@/frontend/stores/themeStore";
+import { storeToRefs } from "pinia";
 
 const taskStore = useTaskStore();
 const title = ref("");
@@ -152,6 +233,8 @@ const content = ref("");
 const filterActive = ref("Todos");
 const modalVisible = ref(false);
 const selectedTask = ref(null);
+const themeStore = useThemeStore();
+const { isDarkMode } = storeToRefs(themeStore);
 
 onMounted(() => {
   taskStore.fetchTasks();
@@ -210,10 +293,7 @@ const closeModal = () => {
 };
 
 const updateTask = async () => {
-  await taskStore.updateTask(
-    selectedTask.value._id,
-    selectedTask.value
-  );
+  await taskStore.updateTask(selectedTask.value._id, selectedTask.value);
   closeModal();
   await taskStore.fetchTasks();
 
